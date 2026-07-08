@@ -102,13 +102,25 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 
 /* GTM (내 디자인, 이모지 없음) */
 .fit-badge{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;height:19px;min-width:42px;padding:0 10px;font-family:'ABCFavorit',sans-serif;font-size:0.68rem;line-height:1;font-weight:700;letter-spacing:.03em;border-radius:20px;vertical-align:middle;margin-right:8px}
+.fit-inline{display:inline-flex;align-items:center;gap:6px;vertical-align:middle;margin-left:12px}
+.fit-inline .fit-lead{font-weight:600;color:var(--muted);margin-right:2px}
+.fit-inline .fit-badge{margin-right:0}
 .fit-badge.high{background:#3a0d08;color:#ff6b57}
 .fit-badge.mid{background:#3a3200;color:#ffd23c}
 .fit-badge.low{background:#2a2a2a;color:#bbb}
 .gtm-card{background:rgba(12,12,12,.4);border:1px solid rgba(255,255,255,.12);border-radius:4px;padding:16px 18px;margin-bottom:12px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
-.gtm-card .ttl{font-weight:600;font-size:1rem;margin-bottom:10px}
-.gtm-card .kv{font-size:0.9rem;margin:6px 0;color:var(--text-news)}
+.gtm-card .ttl{font-weight:600;font-size:1.02rem;margin-bottom:13px}
+.gtm-card .kv{display:grid;grid-template-columns:92px 1fr;gap:12px;margin:8px 0;font-size:0.9rem;line-height:1.62;color:var(--text-news)}
+.gtm-card .kv .k{color:var(--text-label);font-weight:600;font-size:0.82rem}
+.gtm-card .kv .v{color:var(--text-news)}
 .gtm-card .kv b{color:var(--text-strong)}
+.gtm-win{margin:14px 0;padding:11px 14px;background:rgba(255,255,255,.03);border:1px solid var(--border-soft);border-radius:6px}
+.gtm-win .wl{font-size:0.8rem;font-weight:700;color:var(--text-label);letter-spacing:.02em;margin-bottom:7px}
+.gtm-win .wrow{display:grid;grid-template-columns:60px 1fr;gap:10px;margin:6px 0;font-size:0.88rem;line-height:1.55}
+.gtm-win .wrow .k{color:var(--text-strong);font-weight:600}
+.gtm-win .wrow .v{color:var(--text-news)}
+.gtm-foot{margin-top:14px;padding-top:11px;border-top:1px solid var(--border-soft);font-size:0.82rem;color:var(--muted);line-height:1.7}
+.gtm-foot a{color:var(--text-label);text-decoration:underline;text-underline-offset:2px}
 .placeholder{border:1px dashed var(--border);border-radius:6px;padding:36px;text-align:center;color:var(--muted);margin-top:18px;font-size:0.88rem}
 
 /* 경쟁사/AI반도체 */
@@ -224,9 +236,7 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
   <div class="scroll">
     <div class="page-eyebrow">GTM Research Agent · <span id="gtm-cur-date">2026-07-08</span></div>
     <h1>GTM Weekly Report</h1>
-    <div class="meta">2026년 7월 28주차 · B2B + B2G · 수집 2026-07-08 10:11 KST &nbsp;|&nbsp; FIT
-      <span class="fit-badge high">HIGH 0</span><span class="fit-badge mid">MID 1</span><span class="fit-badge low">LOW 1</span>
-    </div>
+    <div class="meta">2026년 7월 28주차 · B2B + B2G · 수집 2026-07-08 10:11 KST<span class="fit-inline"><span class="fit-lead">FIT</span><span class="fit-badge high">HIGH 0</span><span class="fit-badge mid">MID 1</span><span class="fit-badge low">LOW 1</span></span></div>
     <div id="gtm-content"></div>
   </div>
   </div>
@@ -421,40 +431,44 @@ const TAB1_NEWS=[
 const gtmContent={
   'Mid Fit':`<div class="section-label">B2B · 기업 컨택 — Mid Fit</div>`+
     `<div class="gtm-card"><div class="ttl"><span class="fit-badge mid">MID</span>[MID #1] 플래티어 — 소버린·망분리</div>`+
-    `<div class="kv"><b>모델</b> · Llama (버전 확인 필요) &nbsp;|&nbsp; <b>액션</b> · 파트너십</div>`+
-    `<div class="kv"><b>서비스</b> · 금융사(iM캐피탈) 대상 온프레미스 기반 에이전틱 AI 플랫폼 '엑스젠' 공급 — 고객센터 상담업무 자동화, 여신프로세스 자동화</div>`+
-    `<div class="kv"><b>인프라 규모</b> · 미확인</div>`+
-    `<div class="kv"><b>컨택 명분</b> · 플래티어가 iM캐피탈의 'AI 플랫폼 구축' 사업을 수주하고 자사 에이전틱 AI 플랫폼 '엑스젠'을 공급한다. 금융권은 고객 민감정보를 다루는 핵심 업무에서 외부 SaaS AI 도입이 제한돼, 데이터 유출 리스크를 차단하는 온프레미스 기반 AI 거버넌스 체계를 적용한다. 엑스젠은 퍼블릭 LLM 22종과 딥시크·라마 등 오픈소스를 함께 쓰는 하이브리드 환경을 지원한다.</div>`+
-    `<div class="kv"><b>타이밍</b> · 지난 3월 제주은행 'GenAI 플랫폼' 구축 수주에 이은 금융권 연속 수주.</div>`+
-    `<div class="kv"><b>Win-Win</b></div>`+
-    `<div class="kv win"><b>고객</b> — 온프레 추론 HW로 민감정보 유출 리스크 차단, 라마 등 오픈소스 LLM 서빙 비용 절감. RNGD 180W 공랭으로 기존 금융 전산실을 냉각 공사 없이 수용.</div>`+
-    `<div class="kv win"><b>퓨리오사</b> — 플래티어는 제주은행·iM캐피탈 등 금융 온프레 AX를 반복 수주하는 ISV로, 엑스젠 추론 백엔드에 RNGD 표준 탑재 시 다수 금융 고객사 확산 채널 확보.</div>`+
-    `<div class="kv"><b>매출 기회</b> · 중기(6개월)</div>`+
-    `<div class="kv"><b>컨택 포인트</b> · 진병권 (ECS AX사업부문장) &nbsp;|&nbsp; <b>기존 접점</b> · 신규</div>`+
-    `<div class="kv"><b>출처</b> · <a href="https://www.newsworks.co.kr/news/articleView.html?idxno=845977" target="_blank" rel="noopener">newsworks.co.kr</a></div></div>`,
+    `<div class="kv"><div class="k">모델</div><div class="v">Llama (버전 확인 필요)</div></div>`+
+    `<div class="kv"><div class="k">액션</div><div class="v">파트너십</div></div>`+
+    `<div class="kv"><div class="k">서비스</div><div class="v">금융사(iM캐피탈) 대상 온프레미스 기반 에이전틱 AI 플랫폼 '엑스젠' 공급 — 고객센터 상담업무 자동화, 여신프로세스 자동화</div></div>`+
+    `<div class="kv"><div class="k">인프라 규모</div><div class="v">미확인</div></div>`+
+    `<div class="kv"><div class="k">컨택 명분</div><div class="v">플래티어가 iM캐피탈의 'AI 플랫폼 구축' 사업을 수주하고 자사 에이전틱 AI 플랫폼 '엑스젠'을 공급한다. 금융권은 고객 민감정보를 다루는 핵심 업무에서 외부 SaaS AI 도입이 제한돼, 데이터 유출 리스크를 차단하는 온프레미스 기반 AI 거버넌스 체계를 적용한다. 엑스젠은 퍼블릭 LLM 22종과 딥시크·라마 등 오픈소스를 함께 쓰는 하이브리드 환경을 지원한다.</div></div>`+
+    `<div class="kv"><div class="k">타이밍</div><div class="v">지난 3월 제주은행 'GenAI 플랫폼' 구축 수주에 이은 금융권 연속 수주.</div></div>`+
+    `<div class="gtm-win"><div class="wl">Win-Win</div>`+
+    `<div class="wrow"><div class="k">고객</div><div class="v">온프레 추론 HW로 민감정보 유출 리스크 차단, 라마 등 오픈소스 LLM 서빙 비용 절감. RNGD 180W 공랭으로 기존 금융 전산실을 냉각 공사 없이 수용.</div></div>`+
+    `<div class="wrow"><div class="k">퓨리오사</div><div class="v">플래티어는 제주은행·iM캐피탈 등 금융 온프레 AX를 반복 수주하는 ISV로, 엑스젠 추론 백엔드에 RNGD 표준 탑재 시 다수 금융 고객사 확산 채널 확보.</div></div></div>`+
+    `<div class="kv"><div class="k">매출 기회</div><div class="v">중기(6개월)</div></div>`+
+    `<div class="kv"><div class="k">컨택 포인트</div><div class="v">진병권 (ECS AX사업부문장)</div></div>`+
+    `<div class="kv"><div class="k">기존 접점</div><div class="v">신규</div></div>`+
+    `<div class="kv"><div class="k">출처</div><div class="v"><a href="https://www.newsworks.co.kr/news/articleView.html?idxno=845977" target="_blank" rel="noopener">newsworks.co.kr</a></div></div></div>`,
   'Low Fit':`<div class="section-label">B2B · 기업 컨택 — Low Fit</div>`+
     `<div class="gtm-card"><div class="ttl"><span class="fit-badge low">LOW</span>[LOW #1] 코스콤 — 소버린·망분리</div>`+
-    `<div class="kv"><b>모델</b> · EXAONE BI (버전 확인 필요) &nbsp;|&nbsp; <b>액션</b> · 파트너십</div>`+
-    `<div class="kv"><b>서비스</b> · LG AI연구원 '엑사원 BI' 기반 한국 주식시장 예측 AI(AEFS) 공동 구축 — 매일 한·미 약 8000개 종목 분석, 개별 종목 4주 주가 흐름 예측</div>`+
-    `<div class="kv"><b>인프라 규모</b> · 미확인</div>`+
-    `<div class="kv"><b>컨택 명분</b> · 코스콤과 LG AI연구원이 7일 코스콤 본사에서 한국 금융 데이터 분석 서비스 MOU 서명. 핵심은 금융 특화 '엑사원 BI'이며, 데이터 상품 AEFS는 매일 한·미 약 8000개 종목을 분석하고 그중 한국 대표 2500개 종목을 정밀 타깃으로 한다.</div>`+
-    `<div class="kv"><b>타이밍</b> · 7일 MOU 서명 직후, 서비스 고도화·데이터 파이프라인 구축 초기 단계.</div>`+
-    `<div class="kv"><b>Win-Win</b></div>`+
-    `<div class="kv win"><b>고객</b> — 실시간 거래 데이터 특성상 온프레 추론이 유리, RNGD로 외부 반출 없이 대규모 종목 분석 처리량 확보.</div>`+
-    `<div class="kv win"><b>퓨리오사</b> — 코스콤은 자본시장 IT 중추로, 금융 온프레 추론 레퍼런스 확보 시 후속 금융기관 확산 파급력 큼.</div>`+
-    `<div class="kv"><b>매출 기회</b> · 장기(1년+) — 현재 MOU 단계로 추론 인프라 논의는 이르나 선제 접점 확보 가치.</div>`+
-    `<div class="kv"><b>의사결정 라인</b> · 윤창현 (코스콤 사장) &nbsp;|&nbsp; <b>기존 접점</b> · 신규</div>`+
-    `<div class="kv"><b>출처</b> · <a href="http://www.ttlnews.com/news/articleView.html?idxno=3123440" target="_blank" rel="noopener">ttlnews.com</a></div></div>`,
+    `<div class="kv"><div class="k">모델</div><div class="v">EXAONE BI (버전 확인 필요)</div></div>`+
+    `<div class="kv"><div class="k">액션</div><div class="v">파트너십</div></div>`+
+    `<div class="kv"><div class="k">서비스</div><div class="v">LG AI연구원 '엑사원 BI' 기반 한국 주식시장 예측 AI(AEFS) 공동 구축 — 매일 한·미 약 8000개 종목 분석, 개별 종목 4주 주가 흐름 예측</div></div>`+
+    `<div class="kv"><div class="k">인프라 규모</div><div class="v">미확인</div></div>`+
+    `<div class="kv"><div class="k">컨택 명분</div><div class="v">코스콤과 LG AI연구원이 7일 코스콤 본사에서 한국 금융 데이터 분석 서비스 MOU 서명. 핵심은 금융 특화 '엑사원 BI'이며, 데이터 상품 AEFS는 매일 한·미 약 8000개 종목을 분석하고 그중 한국 대표 2500개 종목을 정밀 타깃으로 한다.</div></div>`+
+    `<div class="kv"><div class="k">타이밍</div><div class="v">7일 MOU 서명 직후, 서비스 고도화·데이터 파이프라인 구축 초기 단계.</div></div>`+
+    `<div class="gtm-win"><div class="wl">Win-Win</div>`+
+    `<div class="wrow"><div class="k">고객</div><div class="v">실시간 거래 데이터 특성상 온프레 추론이 유리, RNGD로 외부 반출 없이 대규모 종목 분석 처리량 확보.</div></div>`+
+    `<div class="wrow"><div class="k">퓨리오사</div><div class="v">코스콤은 자본시장 IT 중추로, 금융 온프레 추론 레퍼런스 확보 시 후속 금융기관 확산 파급력 큼.</div></div></div>`+
+    `<div class="kv"><div class="k">매출 기회</div><div class="v">장기(1년+) — 현재 MOU 단계로 추론 인프라 논의는 이르나 선제 접점 확보 가치.</div></div>`+
+    `<div class="kv"><div class="k">의사결정 라인</div><div class="v">윤창현 (코스콤 사장)</div></div>`+
+    `<div class="kv"><div class="k">기존 접점</div><div class="v">신규</div></div>`+
+    `<div class="kv"><div class="k">출처</div><div class="v"><a href="http://www.ttlnews.com/news/articleView.html?idxno=3123440" target="_blank" rel="noopener">ttlnews.com</a></div></div></div>`,
   'CSP / Infra Partner':`<div class="section-label">CSP / Infra Partner</div>`+
     `<div class="placeholder" style="margin:0 0 14px;padding:14px 16px;text-align:left">인프라 운영사(CSP/IDC) — RNGD 서버 납품 또는 NPUaaS 파트너십 대상</div>`+
     `<div class="gtm-card"><div class="ttl">[1] 아이에이</div>`+
-    `<div class="kv"><b>활동</b> · 아이에이와 자회사 아이에이클라우드가 7/1 국산 NPU 기반 소형 AI 데이터센터(AIDC) '네오큐브' 사업 본격 추진. 국산 NPU 서버를 전면 배치하고 인프라·클라우드 풀스택·AI SW·냉각·전력을 국내 기술 중심으로 구성. NIPA 실증과제 수주, 1차 화성·광주 → 2차 확장 및 NPUaaS 공급 본격화, 국내 NPU·서버·SW 기업과 논의 중.</div>`+
-    `<div class="kv"><b>협력 방향</b> · 자체 클라우드 풀스택을 운영하며 국산 NPU 서버 파트너를 물색 중인 신규 AIDC 운영사 — '국내 NPU·서버·SW 기업과 논의 중' 명시, RNGD 서버 직접 공급 + NPUaaS 연계 접점.</div>`+
-    `<div class="kv"><b>기존 접점</b> · 신규</div>`+
-    `<div class="kv"><b>출처</b> · <a href="https://www.etnews.com/20260701000564" target="_blank" rel="noopener">etnews.com</a></div></div>`,
+    `<div class="kv"><div class="k">활동</div><div class="v">아이에이와 자회사 아이에이클라우드가 7/1 국산 NPU 기반 소형 AI 데이터센터(AIDC) '네오큐브' 사업 본격 추진. 국산 NPU 서버를 전면 배치하고 인프라·클라우드 풀스택·AI SW·냉각·전력을 국내 기술 중심으로 구성. NIPA 실증과제 수주, 1차 화성·광주 → 2차 확장 및 NPUaaS 공급 본격화, 국내 NPU·서버·SW 기업과 논의 중.</div></div>`+
+    `<div class="kv"><div class="k">협력 방향</div><div class="v">자체 클라우드 풀스택을 운영하며 국산 NPU 서버 파트너를 물색 중인 신규 AIDC 운영사 — '국내 NPU·서버·SW 기업과 논의 중' 명시, RNGD 서버 직접 공급 + NPUaaS 연계 접점.</div></div>`+
+    `<div class="kv"><div class="k">기존 접점</div><div class="v">신규</div></div>`+
+    `<div class="kv"><div class="k">출처</div><div class="v"><a href="https://www.etnews.com/20260701000564" target="_blank" rel="noopener">etnews.com</a></div></div></div>`,
   '일본 후보':`<div class="section-label">일본 후보</div>`+
-    `<div class="gtm-card"><div class="kv"><b>이번 주 해당 없음</b></div>`+
-    `<div class="kv" style="color:var(--muted)">검토: JP 403건 중 지원모델 키워드 매치 23건(본문 보유 21건) 전량 정독 — GMO인터넷그룹은 Gemma 4 사용(지원모델 아님), 지역기후 특화 LLM은 東京科学大学·국립환경연구소 연구(연구·공공), OpenClaw+Qwen3.5 미니PC는 소비자 제품 리뷰, Naver·Daum·Zum(Solar·K-EXAONE)은 한국 기업. 일본 본사 기업이 지원모델을 본문에 직접 명시해 채택한 사례 0건.</div></div>`,
+    `<div class="gtm-card"><div class="ttl">이번 주 해당 없음</div>`+
+    `<div class="kv"><div class="k">검토</div><div class="v" style="color:var(--muted)">JP 403건 중 지원모델 키워드 매치 23건(본문 보유 21건) 전량 정독 — GMO인터넷그룹은 Gemma 4 사용(지원모델 아님), 지역기후 특화 LLM은 東京科学大学·국립환경연구소 연구(연구·공공), OpenClaw+Qwen3.5 미니PC는 소비자 제품 리뷰, Naver·Daum·Zum(Solar·K-EXAONE)은 한국 기업. 일본 본사 기업이 지원모델을 본문에 직접 명시해 채택한 사례 0건.</div></div></div>`,
   '주목 나라장터 공고':`<div class="section-label">B2G · 주목 나라장터 공고</div>`+
     `<div class="placeholder">이번 주 주목 공고 없음 (목업 — 실제 나라장터 데이터 연동 예정)</div>`,
 };
