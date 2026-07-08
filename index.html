@@ -158,6 +158,8 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 .company,.ai-day-box{scroll-margin-top:16px}
 .gtm-card a{color:var(--text-label);text-decoration:underline;text-underline-offset:2px}
 .gtm-card .kv.win{padding-left:12px;border-left:2px solid var(--border-mid);margin-left:2px}
+.gtm-section{scroll-margin-top:10px}
+.gtm-section+.gtm-section{margin-top:24px}
 @media(max-width:820px){aside{display:none}.top-grid{grid-template-columns:1fr}.scroll{padding:24px 18px}}
 </style>
 </head>
@@ -353,13 +355,14 @@ if(accWrap){
   // 날짜 클릭 = 그 날짜로 "이동"(선택). 토글 아님 — 다시 눌러도 안 접힘, 다른 날짜 누르면 그쪽으로.
   accWrap.addEventListener('click',e=>{
     const sub=e.target.closest('.sidebar-item');
-    if(sub){ renderGtm(sub.textContent.trim()); return; }
+    if(sub){ const tgt=document.getElementById(GTM_ANCHOR[sub.textContent.trim()]); if(tgt) tgt.scrollIntoView({behavior:'smooth',block:'start'}); return; }
     const h=e.target.closest('.acc-head'); if(!h||h.classList.contains('open'))return;
     accWrap.querySelectorAll('.acc-head.open').forEach(x=>{x.classList.remove('open');x.nextElementSibling.classList.remove('open');});
     h.classList.add('open'); h.nextElementSibling.classList.add('open');
     accWrap.querySelectorAll('.sidebar-item.active').forEach(x=>x.classList.remove('active'));
-    const first=h.nextElementSibling.querySelector('.sidebar-item'); if(first){first.classList.add('active'); renderGtm(first.textContent.trim());}
+    const first=h.nextElementSibling.querySelector('.sidebar-item'); if(first)first.classList.add('active');
     const dEl=document.getElementById('gtm-cur-date'); if(dEl)dEl.textContent=fmtRun(h.dataset.run);
+    const sc=document.querySelector('#panel-gtm .scroll'); if(sc) sc.scrollTop=0;
   });
 }
 
@@ -457,7 +460,8 @@ const gtmContent={
 };
 
 /* ===================== 렌더 ===================== */
-function renderGtm(name){const el=document.getElementById('gtm-content'); if(!el)return; el.innerHTML=gtmContent[name]||gtmContent['Mid Fit'];}
+const GTM_ANCHOR={'Mid Fit':'gtm-mid','Low Fit':'gtm-low','CSP / Infra Partner':'gtm-csp','일본 후보':'gtm-jp','주목 나라장터 공고':'gtm-b2g'};
+function renderGtm(){const el=document.getElementById('gtm-content'); if(!el)return; el.innerHTML=Object.keys(gtmContent).map(k=>`<div class="gtm-section" id="${GTM_ANCHOR[k]||''}">${gtmContent[k]}</div>`).join('');}
 function companyBlock(region,ci,c){
   const id='co-'+c.name.replace(/[^A-Za-z0-9]/g,'');
   const news=c.news.length
@@ -503,7 +507,7 @@ function openArticleModal(item,company){
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){backdrop.classList.remove('open');articleBackdrop.classList.remove('open');}});
 
 /* ===================== 배선 ===================== */
-renderGtm('Mid Fit');
+renderGtm();
 renderComp();
 const compContent=document.getElementById('comp-content');
 if(compContent){
