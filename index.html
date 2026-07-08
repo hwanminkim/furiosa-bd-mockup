@@ -236,7 +236,7 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
   <div class="scroll">
     <div class="page-eyebrow">GTM Research Agent · <span id="gtm-cur-date">2026-07-08</span></div>
     <h1>GTM Weekly Report</h1>
-    <div class="meta">2026년 7월 28주차 · B2B + B2G · 수집 2026-07-08 10:11 KST<span class="fit-inline"><span class="fit-lead">FIT</span><span class="fit-badge high">HIGH 0</span><span class="fit-badge mid">MID 1</span><span class="fit-badge low">LOW 1</span></span></div>
+    <div class="meta">2026년 7월 28주차 · B2B + B2G · 수집 2026-07-08<span class="fit-inline"><span class="fit-lead">FIT</span><span class="fit-badge high">HIGH 0</span><span class="fit-badge mid">MID 1</span><span class="fit-badge low">LOW 1</span></span></div>
     <div id="gtm-content"></div>
   </div>
   </div>
@@ -338,7 +338,7 @@ const gtmGroups=[
   {g:'B2B · 기업 컨택',items:['Mid Fit','Low Fit','CSP / Infra Partner','일본 후보']},
   {g:'B2G · 공공 나라장터',items:['주목 나라장터 공고']},
 ];
-function fmtRun(r){const p=r.split('_');return p[1]&&p[1].length>=4?`${p[0]} ${p[1].slice(0,2)}:${p[1].slice(2,4)}`:p[0];}
+function fmtRun(r){return r.split('_')[0];}
 const accWrap=document.getElementById('gtm-acc');
 if(accWrap){
   let html='';
