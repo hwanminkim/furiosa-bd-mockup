@@ -241,20 +241,25 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 </section>
 
 <script>
+function activateTab(name){
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x.dataset.tab===name));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  document.body.setAttribute('data-tab', name);
+  try{ localStorage.setItem('bd-tab', name); }catch(e){}
+}
 document.querySelectorAll('.tab').forEach(t=>{
-  t.addEventListener('click',()=>{
-    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-    t.classList.add('active');
-    document.getElementById('panel-'+t.dataset.tab).classList.add('active');
-    document.body.setAttribute('data-tab', t.dataset.tab);
-  });
+  t.addEventListener('click',()=>activateTab(t.dataset.tab));
 });
-document.body.setAttribute('data-tab','furiosa');
+// 새로고침해도 마지막에 보던 탭 유지
+let saved='furiosa';
+try{ saved=localStorage.getItem('bd-tab')||'furiosa'; }catch(e){}
+if(!document.getElementById('panel-'+saved)) saved='furiosa';
+activateTab(saved);
 // 로고 클릭 → Furiosa AI News(탭1)로
 document.querySelector('.brand').addEventListener('click',e=>{
   e.preventDefault();
-  document.querySelector('.tab[data-tab="furiosa"]').click();
+  activateTab('furiosa');
 });
 document.querySelectorAll('aside').forEach(a=>{
   a.addEventListener('click',e=>{const it=e.target.closest('.sidebar-item');if(!it)return;
