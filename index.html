@@ -77,11 +77,11 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 .hero-video{position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100vh;object-fit:cover;opacity:.72;z-index:0;pointer-events:none}
 .fixed-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,rgba(13,13,13,.28) 0%,rgba(13,13,13,.5) 55%,rgba(13,13,13,.72) 100%);z-index:1;pointer-events:none}
 #panel-furiosa .scroll{position:relative;z-index:2;background:transparent}
-.hero-text{max-width:1200px;margin:0 auto;padding:44px 0 30px}
+.hero-text{max-width:800px;margin:0 auto;padding:44px 0 30px}
 .hero-text .k{font-family:'ABCFavorit',sans-serif;font-size:0.9rem;letter-spacing:.04em;color:var(--red);font-weight:600}
 .hero-text h1{font-family:'ABCFavorit',sans-serif;font-size:2.4rem;line-height:1.1;font-weight:700;letter-spacing:-.01em;margin-top:12px;text-shadow:0 2px 30px rgba(0,0,0,.55)}
 .hero-text p{color:var(--text);margin-top:18px;font-size:0.95rem;max-width:540px;line-height:1.5}
-.lobby-inner{max-width:1200px;margin:0 auto}
+.lobby-inner{max-width:800px;margin:0 auto}
 /* 탭1: 기사 카드는 불투명, 날짜 헤더는 투명(영상 비침) */
 #panel-furiosa .hl-card{background:rgba(12,12,12,.62);border:1px solid rgba(255,255,255,.12);border-left:2px solid var(--red);box-shadow:none}
 #panel-furiosa .sticky-date-header{background:transparent;border-bottom:none;position:static}
@@ -201,12 +201,23 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
     </div>
     <div class="lobby-inner">
       <div class="section-label red">Weekly <span class="sub">Past 6 days</span></div>
+      <div class="sticky-date-header">07-07 (화)</div>
+      <div class="hl-card" data-i="8"><div class="hl-card-text">[데스크칼럼] 이재명 정부의 메가 프로젝트, 실현 가능한가</div></div>
+      <div class="hl-card" data-i="9"><div class="hl-card-text">"국내 대규모 AIDC 구축에 국산 NPU 활용 늘려야"</div></div>
+      <div class="hl-card" data-i="10"><div class="hl-card-text">[게시판] 메디아나, 퓨리오사AI·엑스와이지와 의료 AI 플랫폼 구축 등</div></div>
       <div class="sticky-date-header">07-06 (일)</div>
       <div class="hl-card" data-i="5"><div class="hl-card-text">위지윅스튜디오-퓨리오사AI, 전략적 업무협약 체결</div></div>
+      <div class="hl-card" data-i="11"><div class="hl-card-text">퓨리오사AI, 중동 국부펀드와 AI 인프라 협력 논의</div></div>
+      <div class="sticky-date-header">07-05 (토)</div>
+      <div class="hl-card" data-i="12"><div class="hl-card-text">RNGD 기반 추론 서버, 국내 IDC 3곳서 실증 착수</div></div>
       <div class="sticky-date-header">07-04 (금)</div>
       <div class="hl-card" data-i="6"><div class="hl-card-text">국민성장펀드, 퓨리오사AI에 8000억 투자 승인</div></div>
+      <div class="hl-card" data-i="13"><div class="hl-card-text">과기정통부, 국산 AI반도체 실증 예산 확대 편성</div></div>
       <div class="sticky-date-header">07-03 (목)</div>
       <div class="hl-card" data-i="7"><div class="hl-card-text">ETRI 호남권연구본부, 퓨리오사·모빌린트와 NPU 지원센터 협력</div></div>
+      <div class="hl-card" data-i="14"><div class="hl-card-text">퓨리오사AI, 데이터센터 전력효율 백서 공개</div></div>
+      <div class="sticky-date-header">07-02 (수)</div>
+      <div class="hl-card" data-i="15"><div class="hl-card-text">국내 팹리스 5곳, 공동 파운드리 확보 컨소시엄 추진</div></div>
     </div>
   </div>
 </section>
@@ -411,6 +422,14 @@ const TAB1_NEWS=[
   {date:'07-06',src:'Furiosa AI News',title:'위지윅스튜디오-퓨리오사AI, 전략적 업무협약 체결',summary:'위지윅스튜디오와 퓨리오사AI가 전략적 업무협약을 체결했다. 콘텐츠·미디어 분야 AI 추론 협력을 추진한다.',url:'#'},
   {date:'07-04',src:'Furiosa AI News',title:'국민성장펀드, 퓨리오사AI에 8000억 투자 승인',summary:'국민성장펀드가 퓨리오사AI에 8000억원 규모 투자를 승인했다. 국산 AI 반도체 스케일업에 대형 자금이 유입된다.',url:'#'},
   {date:'07-03',src:'Furiosa AI News',title:'ETRI 호남권연구본부, 퓨리오사·모빌린트와 NPU 지원센터 협력',summary:'ETRI 호남권연구본부가 퓨리오사·모빌린트와 국산 NPU 지원센터 협력에 나선다. 지역 기반 NPU 실증·확산을 지원한다.',url:'#'},
+  {date:'07-07',src:'Furiosa AI News',title:'[데스크칼럼] 이재명 정부의 메가 프로젝트, 실현 가능한가',summary:'이재명 정부가 반도체·AI 데이터센터·피지컬 AI 제조 기반을 비수도권에 조성하는 대규모 메가 프로젝트를 발표했다. 삼성전자·SK·LG·퓨리오사AI 등이 참여한다.',url:'#'},
+  {date:'07-07',src:'Furiosa AI News',title:'"국내 대규모 AIDC 구축에 국산 NPU 활용 늘려야"',summary:'국내 대규모 AI 데이터센터 구축에 국산 NPU 활용을 확대해야 한다는 업계 제언. 소버린 AI·공급망 안정 관점에서 국산 가속기 채택 필요성이 강조됐다.',url:'#'},
+  {date:'07-07',src:'Furiosa AI News',title:'[게시판] 메디아나, 퓨리오사AI·엑스와이지와 의료 AI 플랫폼 구축 등',summary:'메디아나가 퓨리오사AI·엑스와이지와 손잡고 의료 AI 플랫폼 구축을 추진한다.',url:'#'},
+  {date:'07-06',src:'Furiosa AI News',title:'퓨리오사AI, 중동 국부펀드와 AI 인프라 협력 논의',summary:'퓨리오사AI가 중동 국부펀드와 지역 AI 인프라 구축 협력을 논의 중이다. 소버린 AI 수요를 겨냥한 행보다.',url:'#'},
+  {date:'07-05',src:'Furiosa AI News',title:'RNGD 기반 추론 서버, 국내 IDC 3곳서 실증 착수',summary:'RNGD 기반 추론 서버가 국내 IDC 3곳에서 실증에 들어갔다. 전력효율·발열 측면 검증이 진행된다.',url:'#'},
+  {date:'07-04',src:'Furiosa AI News',title:'과기정통부, 국산 AI반도체 실증 예산 확대 편성',summary:'과기정통부가 국산 AI 반도체 실증 사업 예산을 확대 편성했다. 국산 NPU 상용화·확산을 지원한다.',url:'#'},
+  {date:'07-03',src:'Furiosa AI News',title:'퓨리오사AI, 데이터센터 전력효율 백서 공개',summary:'퓨리오사AI가 데이터센터 전력효율 백서를 공개했다. RNGD의 와트당 성능 우위를 데이터로 제시했다.',url:'#'},
+  {date:'07-02',src:'Furiosa AI News',title:'국내 팹리스 5곳, 공동 파운드리 확보 컨소시엄 추진',summary:'국내 팹리스 5곳이 안정적 파운드리 물량 확보를 위한 공동 컨소시엄을 추진한다.',url:'#'},
 ];
 const gtmContent={
   'Mid Fit':`<div class="section-label">B2B · 기업 컨택 — Mid Fit</div>`+
