@@ -38,8 +38,8 @@ body[data-tab="gtm"] header, body[data-tab="comp"] header{background:var(--black
 /* 패널 */
 .panel{flex:1;min-height:0;display:none}
 .panel.active{display:flex}
-/* 탭2·3 전체 균일 딥블랙(쌔검정) */
-#panel-gtm,#panel-comp{background:#070708}
+/* 탭2·3 = 탭1처럼 딥블랙 정지 배경(빨간 움직임 없음) */
+#panel-gtm,#panel-comp{background:#0c0c0e}
 aside{width:200px;flex-shrink:0;border-right:1px solid var(--border);overflow-y:auto;padding:28px 0 40px}
 .sidebar-label{font-family:'ABCFavorit',sans-serif;font-size:0.9rem;font-weight:600;color:var(--text-label);padding:0 20px 8px}
 .sidebar-divider{border:none;border-top:1px solid var(--border);margin:16px 20px}
@@ -92,14 +92,14 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 .fit-badge.high{background:#3a0d08;color:#ff6b57}
 .fit-badge.mid{background:#3a3200;color:#ffd23c}
 .fit-badge.low{background:#2a2a2a;color:#bbb}
-.gtm-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:16px 18px;margin-bottom:12px}
+.gtm-card{background:rgba(12,12,12,.4);border:1px solid rgba(255,255,255,.12);border-left:2px solid var(--red);border-radius:4px;padding:16px 18px;margin-bottom:12px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
 .gtm-card .ttl{font-weight:600;font-size:1rem;margin-bottom:10px}
 .gtm-card .kv{font-size:0.9rem;margin:6px 0;color:var(--text-news)}
 .gtm-card .kv b{color:var(--text-strong)}
 .placeholder{border:1px dashed var(--border);border-radius:6px;padding:36px;text-align:center;color:var(--muted);margin-top:18px;font-size:0.88rem}
 
 /* 경쟁사/AI반도체 */
-.company{border:1px solid var(--border);border-radius:4px;background:var(--card);margin-bottom:10px;padding:4px 16px 10px}
+.company{border:1px solid rgba(255,255,255,.12);border-left:2px solid var(--red);border-radius:4px;background:rgba(12,12,12,.4);margin-bottom:10px;padding:4px 16px 10px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
 .company-header{display:flex;align-items:center;gap:10px;padding:12px 2px}
 .company-dot{width:6px;height:6px;border-radius:50%;background:var(--red)}
 .company-name{font-size:1rem;font-weight:600}
@@ -107,8 +107,8 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 .news-item:last-child{border-bottom:none}
 .news-date{font-family:'ABCFavorit',sans-serif;font-size:0.7rem;color:var(--muted);min-width:32px}
 .news-title{font-size:0.88rem;color:var(--text-news)}
-.ai-day-box{border:1px solid var(--border);border-radius:4px;background:var(--card);overflow:hidden;margin-bottom:12px}
-.ai-day-box-header{font-family:'ABCFavorit',sans-serif;font-size:0.82rem;font-weight:600;color:var(--text-label);padding:10px 16px;border-bottom:1px solid var(--border);background:var(--card-strong)}
+.ai-day-box{border:1px solid rgba(255,255,255,.12);border-left:2px solid var(--red);border-radius:4px;background:rgba(12,12,12,.4);overflow:hidden;margin-bottom:12px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.ai-day-box-header{font-family:'ABCFavorit',sans-serif;font-size:0.82rem;font-weight:600;color:var(--text-label);padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
 .ai-news-row{display:block;padding:10px 16px;border-bottom:1px solid var(--border-soft);color:var(--text-news);font-size:0.9rem}
 .ai-news-row:last-child{border-bottom:none}
 .ai-news-row:hover{background:var(--hover-bg-soft)}
