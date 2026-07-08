@@ -104,14 +104,14 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 .fit-badge.high{background:#3a0d08;color:#ff6b57}
 .fit-badge.mid{background:#3a3200;color:#ffd23c}
 .fit-badge.low{background:#2a2a2a;color:#bbb}
-.gtm-card{background:rgba(12,12,12,.4);border:1px solid rgba(255,255,255,.12);border-left:2px solid var(--red);border-radius:4px;padding:16px 18px;margin-bottom:12px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.gtm-card{background:rgba(12,12,12,.4);border:1px solid rgba(255,255,255,.12);border-radius:4px;padding:16px 18px;margin-bottom:12px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
 .gtm-card .ttl{font-weight:600;font-size:1rem;margin-bottom:10px}
 .gtm-card .kv{font-size:0.9rem;margin:6px 0;color:var(--text-news)}
 .gtm-card .kv b{color:var(--text-strong)}
 .placeholder{border:1px dashed var(--border);border-radius:6px;padding:36px;text-align:center;color:var(--muted);margin-top:18px;font-size:0.88rem}
 
 /* 경쟁사/AI반도체 */
-.company{border:1px solid rgba(255,255,255,.12);border-left:2px solid var(--red);border-radius:4px;background:rgba(12,12,12,.4);margin-bottom:10px;padding:4px 16px 10px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.company{border:1px solid rgba(255,255,255,.12);border-radius:4px;background:rgba(12,12,12,.4);margin-bottom:10px;padding:4px 16px 10px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
 .company-header{display:flex;align-items:center;gap:10px;padding:12px 2px}
 .company-dot{width:6px;height:6px;border-radius:50%;background:var(--red)}
 .company-name{font-size:1rem;font-weight:600}
@@ -119,7 +119,7 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 .news-item:last-child{border-bottom:none}
 .news-date{font-family:'ABCFavorit',sans-serif;font-size:0.7rem;color:var(--muted);min-width:32px}
 .news-title{font-size:0.88rem;color:var(--text-news)}
-.ai-day-box{border:1px solid rgba(255,255,255,.12);border-left:2px solid var(--red);border-radius:4px;background:rgba(12,12,12,.4);overflow:hidden;margin-bottom:12px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.ai-day-box{border:1px solid rgba(255,255,255,.12);border-radius:4px;background:rgba(12,12,12,.4);overflow:hidden;margin-bottom:12px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
 .ai-day-box-header{font-family:'ABCFavorit',sans-serif;font-size:0.82rem;font-weight:600;color:var(--text-label);padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
 .ai-news-row{display:block;padding:10px 16px;border-bottom:1px solid var(--border-soft);color:var(--text-news);font-size:0.9rem}
 .ai-news-row:last-child{border-bottom:none}
@@ -286,7 +286,7 @@ const gtmSources=[
   {label:'launchd (로컬 맥북)', runs:['2026-07-06_192349','2026-07-03_113250','2026-07-02_155101','2026-07-02_141928','2026-07-02_110333','2026-07-01_215312']},
 ];
 const gtmGroups=[
-  {g:'B2B · 기업 컨택',items:['MID FIT','LOW FIT','CSP/인프라 파트너 현황','일본 후보']},
+  {g:'B2B · 기업 컨택',items:['Mid Fit','Low Fit','CSP / Infra Partner','일본 후보']},
   {g:'B2G · 공공 나라장터',items:['주목 나라장터 공고']},
 ];
 function fmtRun(r){const p=r.split('_');return p[1]&&p[1].length>=4?`${p[0]} ${p[1].slice(0,2)}:${p[1].slice(2,4)}`:p[0];}
