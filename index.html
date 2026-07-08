@@ -46,8 +46,8 @@ aside{width:200px;flex-shrink:0;border-right:1px solid var(--border);overflow-y:
 .sidebar-item.active{color:var(--text);border-left-color:var(--red);background:rgba(226,21,0,.06)}
 .sidebar-dot{width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0}
 .scroll{flex:1;overflow-y:auto;padding:36px 40px 80px}
-/* 탭2·3 콘텐츠 가운데 정렬 (탭1처럼 좌우 여백 잡히게) */
-#panel-gtm .scroll > *, #panel-comp .scroll > *{max-width:1040px;margin-left:auto;margin-right:auto}
+/* 탭2·3: 사이드바+콘텐츠 전체 블록을 묶어 통째로 가운데 정렬 */
+.app-wrap{display:flex;width:100%;max-width:1340px;margin:0 auto}
 .page-eyebrow{font-family:'ABCFavorit',sans-serif;font-size:0.75rem;font-weight:500;color:var(--red);margin-bottom:10px}
 h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 .meta{font-size:0.88rem;color:var(--muted);margin-bottom:34px;padding-bottom:26px;border-bottom:1px solid var(--border)}
@@ -165,6 +165,7 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 
 <!-- 탭2: GTM (사이드바, 공통 섹션 제거) -->
 <section class="panel" id="panel-gtm">
+  <div class="app-wrap">
   <aside>
     <div class="sidebar-label">B2B · 기업 컨택</div>
     <div class="sidebar-item active"><span class="sidebar-dot"></span>MID FIT</div>
@@ -191,10 +192,12 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
     </div>
     <div class="placeholder">※ 목업 — 실제로는 팀원 GTM 데이터가 이 디자인으로 렌더됩니다 (일자별 · B2B/B2G FIT 판정)</div>
   </div>
+  </div>
 </section>
 
 <!-- 탭3: 경쟁사·산업 (사이드바) -->
 <section class="panel" id="panel-comp">
+  <div class="app-wrap">
   <aside>
     <div class="sidebar-label">Korea</div>
     <div class="sidebar-item active"><span class="sidebar-dot"></span>Rebellions</div>
@@ -230,6 +233,7 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
       <a class="ai-news-row">TSMC, 베일 벗은 1.3나노 'A13' 공정…미세화·패키징 <span class="ai-news-src">— epnc.co.kr</span></a>
       <a class="ai-news-row">ByteDance is quietly building its own chip to escape Nvidia <span class="ai-news-src">— scmp.com</span></a>
     </div>
+  </div>
   </div>
 </section>
 
