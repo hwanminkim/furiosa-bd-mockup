@@ -57,6 +57,8 @@ aside{width:200px;flex-shrink:0;border-right:1px solid var(--border);overflow-y:
 .acc-body.open{max-height:680px}
 .acc-group{font-size:0.72rem;font-weight:600;color:var(--muted);padding:9px 20px 3px 32px}
 .sidebar-item.sub{padding-left:32px;font-size:0.9rem}
+.src-label{padding-top:15px;margin-top:9px;border-top:1px solid var(--border)}
+#gtm-acc .src-label:first-child{padding-top:0;margin-top:0;border-top:none}
 .scroll{flex:1;overflow-y:auto;padding:36px 40px 80px}
 /* 탭2·3: 사이드바+콘텐츠 전체 블록을 묶어 통째로 가운데 정렬 */
 .app-wrap{display:flex;width:100%;max-width:1340px;margin:0 auto}
@@ -182,11 +184,10 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 <section class="panel" id="panel-gtm">
   <div class="app-wrap">
   <aside id="gtm-aside">
-    <div class="sidebar-label">GTM 리서치 · 날짜별</div>
     <div id="gtm-acc"></div>
   </aside>
   <div class="scroll">
-    <div class="page-eyebrow">GTM Research Agent</div>
+    <div class="page-eyebrow">GTM Research Agent · <span id="gtm-cur-date">2026-07-08</span></div>
     <h1>GTM Weekly Report</h1>
     <div class="meta">2026년 7월 28주차 · B2B + B2G · 수집 2026-07-08 10:11 KST &nbsp;|&nbsp; FIT
       <span class="fit-badge high">HIGH 0</span><span class="fit-badge mid">MID 1</span><span class="fit-badge low">LOW 1</span>
@@ -278,36 +279,48 @@ document.querySelectorAll('.scroll,.trend-scroll-box,aside').forEach(el=>{
     t=setTimeout(()=>el.classList.remove('scrolling'),700);
   });
 });
-// GTM 사이드바: 날짜(마스터) → 클릭 시 하위 항목(슬레이브) 펼침 (아코디언, 하나만 열림)
-const gtmDates=['2026-07-08','2026-07-07','2026-07-06','2026-07-05','2026-07-04','2026-07-03'];
+// GTM 사이드바: 실행 소스(Pod/CCR/launchd) → 날짜(선택 이동) → 하위 항목(슬레이브)
+const gtmSources=[
+  {label:'Pod (사내 k8s 자동)', runs:['2026-07-08_093209','2026-07-07_093207','2026-07-06_192559','2026-07-06_145955','2026-07-06_113912','2026-07-05_123417']},
+  {label:'CCR (클라우드 무인 자동)', runs:['2026-07-08_071026','2026-07-07_104232','2026-07-07_070958','2026-07-06_190113','2026-07-06_092605','2026-07-05_114219']},
+  {label:'launchd (로컬 맥북)', runs:['2026-07-06_192349','2026-07-03_113250','2026-07-02_155101','2026-07-02_141928','2026-07-02_110333','2026-07-01_215312']},
+];
 const gtmGroups=[
   {g:'B2B · 기업 컨택',items:['MID FIT','LOW FIT','CSP/인프라 파트너 현황','일본 후보']},
   {g:'B2G · 공공 나라장터',items:['주목 나라장터 공고']},
-  {g:'공통',items:['경쟁사 GTM 동향','실행 메타']},
 ];
+function fmtRun(r){const p=r.split('_');return p[1]&&p[1].length>=4?`${p[0]} ${p[1].slice(0,2)}:${p[1].slice(2,4)}`:p[0];}
 const accWrap=document.getElementById('gtm-acc');
 if(accWrap){
   let html='';
-  gtmDates.forEach((d,i)=>{
-    const open=i===0;
-    html+=`<div class="acc-head${open?' open':''}" data-date="${d}"><span class="acc-caret">▶</span>${d}</div>`;
-    html+=`<div class="acc-body${open?' open':''}">`;
-    gtmGroups.forEach(gr=>{
-      html+=`<div class="acc-group">${gr.g}</div>`;
-      gr.items.forEach((it,j)=>{
-        const act=(open&&gr.g[0]==='B'&&gr.g.indexOf('B2B')===0&&j===0)?' active':'';
-        html+=`<div class="sidebar-item sub${act}"><span class="sidebar-dot"></span>${it}</div>`;
+  gtmSources.forEach((src,si)=>{
+    html+=`<div class="sidebar-label src-label">${src.label}</div>`;
+    src.runs.forEach((run,ri)=>{
+      const open=(si===0&&ri===0);
+      html+=`<div class="acc-head${open?' open':''}" data-run="${run}"><span class="acc-caret">▶</span>${fmtRun(run)}</div>`;
+      html+=`<div class="acc-body${open?' open':''}">`;
+      gtmGroups.forEach(gr=>{
+        html+=`<div class="acc-group">${gr.g}</div>`;
+        gr.items.forEach((it,j)=>{
+          const act=(open&&gr.g.indexOf('B2B')===0&&j===0)?' active':'';
+          html+=`<div class="sidebar-item sub${act}"><span class="sidebar-dot"></span>${it}</div>`;
+        });
       });
+      html+=`</div>`;
     });
-    html+=`</div>`;
   });
   accWrap.innerHTML=html;
+  // 초기 선택 날짜를 본문 eyebrow에 반영
+  const opened=accWrap.querySelector('.acc-head.open'), dEl0=document.getElementById('gtm-cur-date');
+  if(opened&&dEl0) dEl0.textContent=fmtRun(opened.dataset.run);
+  // 날짜 클릭 = 그 날짜로 "이동"(선택). 토글 아님 — 다시 눌러도 안 접힘, 다른 날짜 누르면 그쪽으로.
   accWrap.addEventListener('click',e=>{
-    const h=e.target.closest('.acc-head'); if(!h)return;
-    const body=h.nextElementSibling;
-    const wasOpen=h.classList.contains('open');
+    const h=e.target.closest('.acc-head'); if(!h||h.classList.contains('open'))return;
     accWrap.querySelectorAll('.acc-head.open').forEach(x=>{x.classList.remove('open');x.nextElementSibling.classList.remove('open');});
-    if(!wasOpen){h.classList.add('open');body.classList.add('open');}
+    h.classList.add('open'); h.nextElementSibling.classList.add('open');
+    accWrap.querySelectorAll('.sidebar-item.active').forEach(x=>x.classList.remove('active'));
+    const first=h.nextElementSibling.querySelector('.sidebar-item'); if(first)first.classList.add('active');
+    const dEl=document.getElementById('gtm-cur-date'); if(dEl)dEl.textContent=fmtRun(h.dataset.run);
   });
 }
 </script>
