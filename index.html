@@ -246,16 +246,16 @@ function activateTab(name){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.getElementById('panel-'+name).classList.add('active');
   document.body.setAttribute('data-tab', name);
-  try{ localStorage.setItem('bd-tab', name); }catch(e){}
+  // URL 해시에 기록 → file://에서도 새로고침하면 그 탭 그대로 유지
+  if(history.replaceState) history.replaceState(null,'','#'+name); else location.hash=name;
 }
 document.querySelectorAll('.tab').forEach(t=>{
   t.addEventListener('click',()=>activateTab(t.dataset.tab));
 });
-// 새로고침해도 마지막에 보던 탭 유지
-let saved='furiosa';
-try{ saved=localStorage.getItem('bd-tab')||'furiosa'; }catch(e){}
-if(!document.getElementById('panel-'+saved)) saved='furiosa';
-activateTab(saved);
+// 로드 시 URL 해시(#gtm 등)의 탭을 복원, 없으면 furiosa
+let init=(location.hash||'').replace('#','');
+if(!init || !document.getElementById('panel-'+init)) init='furiosa';
+activateTab(init);
 // 로고 클릭 → Furiosa AI News(탭1)로
 document.querySelector('.brand').addEventListener('click',e=>{
   e.preventDefault();
