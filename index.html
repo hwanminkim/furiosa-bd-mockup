@@ -180,15 +180,15 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 <header>
   <a href="#" class="brand"><img src="assets/img/Furiosa_AI_h_w.png" alt="Furiosa AI"></a>
   <nav class="tabs">
-    <div class="tab active" data-tab="furiosa">Furiosa AI News</div>
+    <div class="tab active" data-tab="comp">Competitors &amp; Industry</div>
     <div class="tab" data-tab="gtm">GTM Weekly</div>
-    <div class="tab" data-tab="comp">Competitors &amp; Industry</div>
+    <div class="tab" data-tab="furiosa">Furiosa AI News</div>
   </nav>
   <span class="header-tag">BD &amp; Sales</span>
 </header>
 
 <!-- 탭1: Furiosa AI News (로비, 사이드바 없음, 내부 스크롤) -->
-<section class="panel active" id="panel-furiosa">
+<section class="panel" id="panel-furiosa">
   <video class="hero-video" autoplay muted loop playsinline
     src="https://static.furiosa.info/Videos/fai-animationCanvas-1440w_5mbps-SLOW.mp4"></video>
   <div class="fixed-overlay"></div>
@@ -243,7 +243,7 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 </section>
 
 <!-- 탭3: 경쟁사·산업 (사이드바) -->
-<section class="panel" id="panel-comp">
+<section class="panel active" id="panel-comp">
   <div class="app-wrap">
   <aside id="comp-aside">
     <div class="sidebar-label">Korea</div>
@@ -308,14 +308,14 @@ function activateTab(name){
 document.querySelectorAll('.tab').forEach(t=>{
   t.addEventListener('click',()=>activateTab(t.dataset.tab));
 });
-// 로드 시 URL 해시(#gtm 등)의 탭을 복원, 없으면 furiosa
+// 로드 시 URL 해시의 탭을 복원, 없으면 comp(첫 탭)
 let init=(location.hash||'').replace('#','');
-if(!init || !document.getElementById('panel-'+init)) init='furiosa';
+if(!init || !document.getElementById('panel-'+init)) init='comp';
 activateTab(init);
-// 로고 클릭 → Furiosa AI News(탭1)로
+// 로고 클릭 → 첫 탭(Competitors)으로
 document.querySelector('.brand').addEventListener('click',e=>{
   e.preventDefault();
-  activateTab('furiosa');
+  activateTab('comp');
 });
 document.querySelectorAll('aside').forEach(a=>{
   a.addEventListener('click',e=>{const it=e.target.closest('.sidebar-item');if(!it)return;
