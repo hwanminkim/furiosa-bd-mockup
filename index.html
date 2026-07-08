@@ -126,6 +126,38 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 .ai-news-row:last-child{border-bottom:none}
 .ai-news-row:hover{background:var(--hover-bg-soft)}
 .ai-news-src{color:var(--text-label);font-size:0.8rem}
+/* 모달 (회사 링크 / 기사 요약) */
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:center;justify-content:center;padding:20px}
+.modal-backdrop.open{display:flex}
+.modal{background:var(--card-strong);border:1px solid var(--border-mid);border-radius:8px;padding:24px;width:320px;box-shadow:0 24px 48px rgba(0,0,0,.5)}
+.modal-title{font-size:0.68rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+.modal-company{font-size:1.1rem;font-weight:700;margin-bottom:18px;color:var(--text-strong)}
+.modal-links{display:flex;flex-direction:column;gap:8px}
+.modal-link{display:flex;align-items:center;gap:12px;padding:11px 14px;border:1px solid var(--border-mid);border-radius:4px;text-decoration:none;color:var(--text);font-size:0.94rem}
+.modal-link:hover{border-color:var(--red);background:rgba(226,21,0,.06)}
+.modal-link-icon{font-size:1rem;width:20px;text-align:center}
+.modal-link-label{flex:1}
+.modal-link-arrow{font-size:0.68rem;color:var(--dim)}
+.modal-close{display:block;margin-top:14px;width:100%;padding:9px;background:none;border:1px solid var(--border-mid);border-radius:4px;color:var(--dim);font-size:0.8rem;cursor:pointer}
+.modal-close:hover{color:var(--text)}
+.modal.article-modal{width:600px;max-width:calc(100vw - 40px);max-height:84vh;overflow-y:auto;padding:28px 32px}
+.article-modal-company{font-family:'ABCFavorit',sans-serif;font-size:1rem;font-weight:700;color:var(--red);display:block;margin-bottom:4px}
+.article-modal-date{font-family:'ABCFavorit',sans-serif;font-size:0.95rem;color:var(--muted);display:block;margin-bottom:10px}
+.article-modal-title{font-size:1.25rem;font-weight:600;line-height:1.45;margin-bottom:18px;color:var(--text-strong)}
+.article-section{margin-bottom:14px}
+.article-section-label{font-family:'ABCFavorit',sans-serif;font-size:1rem;font-weight:700;color:var(--red);margin-bottom:5px}
+.article-section-body{font-size:1.02rem;color:var(--text-news);line-height:1.6;white-space:pre-wrap}
+/* 클릭 가능한 회사/뉴스 */
+.company-header{cursor:pointer}
+.company-header:hover .company-name{color:var(--text-strong)}
+.co-chevron{margin-left:auto;color:var(--dim);font-size:0.85rem}
+.news-item{cursor:pointer}
+.news-item:hover .news-title{color:var(--text-strong)}
+.ai-news-row{cursor:pointer}
+.ai-news-row .ai-news-summary{display:block;color:var(--muted);font-size:0.82rem;margin-top:4px;line-height:1.5}
+.company,.ai-day-box{scroll-margin-top:16px}
+.gtm-card a{color:var(--text-label);text-decoration:underline;text-underline-offset:2px}
+.gtm-card .kv.win{padding-left:12px;border-left:2px solid var(--border-mid);margin-left:2px}
 @media(max-width:820px){aside{display:none}.top-grid{grid-template-columns:1fr}.scroll{padding:24px 18px}}
 </style>
 </head>
@@ -158,22 +190,22 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
           <div class="section-label red">Daily <span class="sub">00:00 KST</span></div>
           <div class="trend-scroll-box">
             <div class="sticky-date-header">07-08 (수)</div>
-            <div class="hl-card"><div class="hl-card-text">퓨리오사AI, 에퀴닉스와 유럽 AI 인프라 시장 공략 나선다</div></div>
-            <div class="hl-card"><div class="hl-card-text">삼성전자, AI 인프라용 기업용 SSD 'PM1763' 양산</div></div>
-            <div class="hl-card"><div class="hl-card-text">ByteDance, 엔비디아 탈피 위해 자체 칩 개발 착수</div></div>
-            <div class="hl-card"><div class="hl-card-text">퓨리오사AI, 유럽에 RNGD 기반 추론 전용 AI 데이터센터 구축</div></div>
-            <div class="hl-card"><div class="hl-card-text">LG AI연구원, 엑사원에 퓨리오사 레니게이드 적용 확대</div></div>
+            <div class="hl-card" data-i="0"><div class="hl-card-text">퓨리오사AI, 에퀴닉스와 유럽 AI 인프라 시장 공략 나선다</div></div>
+            <div class="hl-card" data-i="1"><div class="hl-card-text">삼성전자, AI 인프라용 기업용 SSD 'PM1763' 양산</div></div>
+            <div class="hl-card" data-i="2"><div class="hl-card-text">ByteDance, 엔비디아 탈피 위해 자체 칩 개발 착수</div></div>
+            <div class="hl-card" data-i="3"><div class="hl-card-text">퓨리오사AI, 유럽에 RNGD 기반 추론 전용 AI 데이터센터 구축</div></div>
+            <div class="hl-card" data-i="4"><div class="hl-card-text">LG AI연구원, 엑사원에 퓨리오사 레니게이드 적용 확대</div></div>
           </div>
         </div>
         <div>
           <div class="section-label red">Weekly <span class="sub">Past 6 days</span></div>
           <div class="trend-scroll-box">
             <div class="sticky-date-header">07-06 (일)</div>
-            <div class="hl-card"><div class="hl-card-text">위지윅스튜디오-퓨리오사AI, 전략적 업무협약 체결</div></div>
+            <div class="hl-card" data-i="5"><div class="hl-card-text">위지윅스튜디오-퓨리오사AI, 전략적 업무협약 체결</div></div>
             <div class="sticky-date-header">07-04 (금)</div>
-            <div class="hl-card"><div class="hl-card-text">국민성장펀드, 퓨리오사AI에 8000억 투자 승인</div></div>
+            <div class="hl-card" data-i="6"><div class="hl-card-text">국민성장펀드, 퓨리오사AI에 8000억 투자 승인</div></div>
             <div class="sticky-date-header">07-03 (목)</div>
-            <div class="hl-card"><div class="hl-card-text">ETRI 호남권연구본부, 퓨리오사·모빌린트와 NPU 지원센터 협력</div></div>
+            <div class="hl-card" data-i="7"><div class="hl-card-text">ETRI 호남권연구본부, 퓨리오사·모빌린트와 NPU 지원센터 협력</div></div>
           </div>
         </div>
       </div>
@@ -193,15 +225,7 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
     <div class="meta">2026년 7월 28주차 · B2B + B2G · 수집 2026-07-08 10:11 KST &nbsp;|&nbsp; FIT
       <span class="fit-badge high">HIGH 0</span><span class="fit-badge mid">MID 1</span><span class="fit-badge low">LOW 1</span>
     </div>
-    <div class="section-label">B2B · 기업 컨택</div>
-    <div class="gtm-card">
-      <div class="ttl"><span class="fit-badge mid">MID</span>[MID #1] 플래티어 — 소버린·망분리</div>
-      <div class="kv"><b>모델</b> · Llama &nbsp;|&nbsp; <b>액션</b> · 파트너십</div>
-      <div class="kv"><b>서비스</b> · 금융사(iM캐피탈) 대상 온프레미스 에이전틱 AI 플랫폼 '엑스젠' 공급 — 상담·여신 프로세스 자동화</div>
-      <div class="kv"><b>컨택 명분</b> · 플래티어가 iM캐피탈 'AI 플랫폼 구축' 수주, 온프레 AI 거버넌스 적용. 퍼블릭 LLM 22종 + 오픈소스 하이브리드.</div>
-      <div class="kv"><b>Win-Win</b> · RNGD 180W 공랭으로 기존 금융 전산실 냉각공사 없이 수용, 온프레 추론 비용 절감.</div>
-    </div>
-    <div class="placeholder">※ 목업 — 실제로는 팀원 GTM 데이터가 이 디자인으로 렌더됩니다 (일자별 · B2B/B2G FIT 판정)</div>
+    <div id="gtm-content"></div>
   </div>
   </div>
 </section>
@@ -209,7 +233,7 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 <!-- 탭3: 경쟁사·산업 (사이드바) -->
 <section class="panel" id="panel-comp">
   <div class="app-wrap">
-  <aside>
+  <aside id="comp-aside">
     <div class="sidebar-label">Korea</div>
     <div class="sidebar-item active"><span class="sidebar-dot"></span>Rebellions</div>
     <div class="sidebar-item"><span class="sidebar-dot"></span>DeepX</div>
@@ -228,25 +252,37 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
     <div class="page-eyebrow">Competitive Intelligence</div>
     <h1>Competitors &amp; Industry</h1>
     <div class="meta">회사별 최신 동향 + AI 반도체 산업 뉴스 모음</div>
-    <div class="section-label">Korea</div>
-    <div class="company"><div class="company-header"><span class="company-dot"></span><span class="company-name">Rebellions</span></div>
-      <div class="news-item"><span class="news-date">07-07</span><span class="news-title">화웨이 타오(τ) 법칙이 '삼전닉스'에 던진 질문</span></div>
-    </div>
-    <div class="section-label" style="margin-top:24px">Global</div>
-    <div class="company"><div class="company-header"><span class="company-dot"></span><span class="company-name">NVIDIA</span></div>
-      <div class="news-item"><span class="news-date">07-08</span><span class="news-title">NVIDIA and Hugging Face expand inference partnership</span></div>
-      <div class="news-item"><span class="news-date">07-07</span><span class="news-title">Nvidia Says 'Our Roadmap Is Intact' Amid China Curbs</span></div>
-    </div>
-    <div class="section-label" style="margin-top:24px">AI 반도체 동향 <span class="sub">· 국내·글로벌 기사 모음</span></div>
-    <div class="ai-day-box">
-      <div class="ai-day-box-header">07-08 (수)</div>
-      <a class="ai-news-row">삼성전자, AI 인프라용 기업용 SSD 'PM1763' 양산 <span class="ai-news-src">— viva100.com</span></a>
-      <a class="ai-news-row">TSMC, 베일 벗은 1.3나노 'A13' 공정…미세화·패키징 <span class="ai-news-src">— epnc.co.kr</span></a>
-      <a class="ai-news-row">ByteDance is quietly building its own chip to escape Nvidia <span class="ai-news-src">— scmp.com</span></a>
-    </div>
+    <div id="comp-content"></div>
   </div>
   </div>
 </section>
+
+<!-- 회사 링크 팝업 -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal">
+    <div class="modal-title">Company</div>
+    <div class="modal-company" id="modal-company-name"></div>
+    <div class="modal-links">
+      <a class="modal-link" id="modal-website" href="#" target="_blank" rel="noopener"><span class="modal-link-icon">🌐</span><span class="modal-link-label">Web Site</span><span class="modal-link-arrow">↗</span></a>
+      <a class="modal-link" id="modal-blog" href="#" target="_blank" rel="noopener"><span class="modal-link-icon">🗂️</span><span class="modal-link-label">Tech Blog</span><span class="modal-link-arrow">↗</span></a>
+    </div>
+    <button class="modal-close" id="modal-close">닫기</button>
+  </div>
+</div>
+<!-- 기사 요약 팝업 -->
+<div class="modal-backdrop" id="article-backdrop">
+  <div class="modal article-modal">
+    <span class="article-modal-company" id="article-modal-company"></span>
+    <span class="article-modal-date" id="article-modal-date"></span>
+    <div class="article-modal-title" id="article-modal-title"></div>
+    <div class="article-section">
+      <div class="article-section-label">요약</div>
+      <div class="article-section-body" id="article-modal-summary"></div>
+    </div>
+    <a class="modal-link" id="article-modal-link" href="#" target="_blank" rel="noopener"><span class="modal-link-icon">🔍</span><span class="modal-link-label">원문 보기</span><span class="modal-link-arrow">↗</span></a>
+    <button class="modal-close" id="article-modal-close">닫기</button>
+  </div>
+</div>
 
 <script>
 function activateTab(name){
@@ -316,12 +352,184 @@ if(accWrap){
   if(opened&&dEl0) dEl0.textContent=fmtRun(opened.dataset.run);
   // 날짜 클릭 = 그 날짜로 "이동"(선택). 토글 아님 — 다시 눌러도 안 접힘, 다른 날짜 누르면 그쪽으로.
   accWrap.addEventListener('click',e=>{
+    const sub=e.target.closest('.sidebar-item');
+    if(sub){ renderGtm(sub.textContent.trim()); return; }
     const h=e.target.closest('.acc-head'); if(!h||h.classList.contains('open'))return;
     accWrap.querySelectorAll('.acc-head.open').forEach(x=>{x.classList.remove('open');x.nextElementSibling.classList.remove('open');});
     h.classList.add('open'); h.nextElementSibling.classList.add('open');
     accWrap.querySelectorAll('.sidebar-item.active').forEach(x=>x.classList.remove('active'));
-    const first=h.nextElementSibling.querySelector('.sidebar-item'); if(first)first.classList.add('active');
+    const first=h.nextElementSibling.querySelector('.sidebar-item'); if(first){first.classList.add('active'); renderGtm(first.textContent.trim());}
     const dEl=document.getElementById('gtm-cur-date'); if(dEl)dEl.textContent=fmtRun(h.dataset.run);
+  });
+}
+
+/* ===================== 데이터 ===================== */
+const COMPANIES={
+  korea:[
+    {name:'Rebellions',website:'https://rebellions.ai',blog:'https://kr.rebellions.ai/category/blogs/',news:[
+      {d:'07-08',t:'피지컬 AI 뜨자 판 커진 AI칩…"K-AP 사업 육성해야" [현장]',s:'피지컬 AI 부상으로 AI칩 시장이 커지는 가운데 업계가 K-AP(반도체 후공정) 사업 육성 필요성을 강조했다. 리벨리온 등 국산 팹리스가 참여했다.',u:'#'},
+      {d:'07-08',t:'"韓 피지컬 AI, 첨단 제조업 위에 온디바이스 반도체 뿌리내려야"',s:'한국 피지컬 AI가 첨단 제조업 경쟁력 위에 온디바이스 반도체를 뿌리내려야 한다는 제언. 국산 NPU 생태계 강화가 핵심으로 지목됐다.',u:'#'},
+      {d:'07-08',t:"유럽 향하는 'K-AI 반도체'…리벨리온·퓨리오사, 파리서 '소버린 AI' 전면에",s:'리벨리온·퓨리오사가 파리 행사에서 소버린 AI를 전면에 내세우며 유럽 시장 공략에 나섰다.',u:'#'},
+    ]},
+    {name:'DeepX',website:'https://deepx.ai',blog:'https://developer.deepx.ai/',news:[
+      {d:'07-08',t:'싱가포르 정부 AI 책임자, 딥엑스 방문… 온디바이스 AI 협력 논의',s:'싱가포르 정부 AI 책임자가 딥엑스를 방문해 온디바이스 AI 협력 방안을 논의했다.',u:'#'},
+      {d:'07-08',t:'경북도, 온디바이스 AI 공모 선정…사업비 106억원 확보',s:'경상북도가 온디바이스 AI 공모에 선정돼 사업비 106억원을 확보했다. 딥엑스 등 국산 NPU 실증이 추진된다.',u:'#'},
+      {d:'07-07',t:'경북도, 온디바이스 AI 실증사업 2년 연속 선정',s:'경북도가 온디바이스 AI 실증사업에 2년 연속 선정됐다.',u:'#'},
+    ]},
+    {name:'HyperAccel',website:'https://hyperaccel.ai',blog:'https://hyper-accel.github.io/',news:[
+      {d:'07-08',t:'어드밴텍 임베디드(Embedded) 사업부, 산업 현장 맞춤형 엣지 AI 솔루션 소개',s:'어드밴텍 임베디드 사업부가 컴퓨텍스에서 WEDA를 주제로 패널 세션에 참여했다. 하이퍼엑셀은 NPU 분야의 DMS 활용을 통한 글로벌 엣지 AI 네트워크 확장 사례를 소개했다.',u:'#'},
+      {d:'07-03',t:'[일렉트로니카 상하이 2026] K-팹리스, 세계 최대 中 시장 노크',s:'일렉트로니카 상하이 2026에서 국산 팹리스들이 세계 최대 중국 시장 공략에 나섰다. 하이퍼엑셀 등이 참가했다.',u:'#'},
+      {d:'07-01',t:"[AI 가속기 ⑤] 실전 배치 시작한 'K-AI 반도체'",s:'국산 AI 가속기가 실전 배치 단계에 진입했다는 기획. 하이퍼엑셀 등 국산 NPU 상용화 사례를 다뤘다.',u:'#'},
+    ]},
+    {name:'Mobilint',website:'https://mobilint.com',blog:'https://mobilint.com/blog',news:[]},
+  ],
+  global:[
+    {name:'NVIDIA',website:'https://www.nvidia.com',blog:'https://blogs.nvidia.com',news:[
+      {d:'07-08',t:'NVIDIA and Hugging Face expand inference partnership',s:'NVIDIA와 Hugging Face가 추론 파트너십을 확대한다. 오픈 모델 서빙 생태계에서 협력을 강화한다.',u:'#'},
+      {d:'07-07',t:"Nvidia Says 'Our Roadmap Is Intact' Amid China Curbs",s:'엔비디아가 중국 규제 속에서도 로드맵에 차질이 없다고 밝혔다.',u:'#'},
+    ]},
+    {name:'Tenstorrent',website:'https://tenstorrent.com',blog:'https://tenstorrent.com/developers',news:[
+      {d:'06-28',t:'Jim Keller Says Cerebras IPO Was Helpful As Tenstorrent Set To Beat Them on Everything',s:'짐 켈러가 세레브라스 IPO가 도움이 됐다며 텐스토렌트의 경쟁력을 자신했다. 인텔·퀄컴 CEO와의 회동도 언급했다.',u:'#'},
+    ]},
+    {name:'Cerebras',website:'https://cerebras.net',blog:'https://cerebras.net/blog',news:[
+      {d:'07-08',t:'SkyeChip Advances Custom Interface IP Engagement with Cerebras for Wafer-Scale AI Platforms',s:'SkyeChip이 세레브라스의 웨이퍼 스케일 AI 플랫폼용 커스텀 인터페이스 IP 협력을 진전시켰다.',u:'#'},
+      {d:'06-30',t:'Where Will Cerebras Stock be in 3 Years?',s:'세레브라스 주가의 3년 후 전망을 다룬 분석 기사.',u:'#'},
+      {d:'06-29',t:'Cerebras Stock Sold Off After Earnings',s:'실적 발표 후 세레브라스 주가가 하락했다는 기사.',u:'#'},
+    ]},
+    {name:'SambaNova',website:'https://sambanova.ai',blog:'https://sambanova.ai/blog',news:[
+      {d:'06-12',t:'SambaNova Names Engineering and Finance Leaders to Accelerate Growth',s:'삼바노바가 고객 수요 증가에 대응해 엔지니어링·재무 리더를 새로 선임했다.',u:'#'},
+    ]},
+  ],
+};
+const AI_NEWS={date:'07-08 (수)',rows:[
+  {t:"엔비디아의 나라에 없는 반도체 공장… 美 반도체 부활 가로막은 '30년의 공백'",src:'biz.chosun.com',s:'졸업생 다수는 공장 근무가 필요한 반도체 제조보다 급여가 높고 근무 방식이 자유로운 인공지능(AI)·소프트웨어 기업을 택한다. 분석에 참여한 테일러 라운드트리 맥킨지 파트너는 "반도체는 수십 년 동안 미국에서…"라고 말했다.',u:'https://biz.chosun.com'},
+  {t:"[단독]반도체·로봇 '규제 차르'에 공무원 면책도…메가특구 '보신주의' 없앤다",src:'mt.co.kr',s:"정부가 반도체 등 주력 첨단산업의 초격차 확보를 위한 규제 개혁 콘트롤타워인 '차르'(czar·총책임자) 제도를 도입한다. AI·가상자산 등 분야에 차르를 두는 방안이 논의된다.",u:'https://www.mt.co.kr'},
+]};
+const TAB1_NEWS=[
+  {date:'07-08',src:'Furiosa AI News',title:'퓨리오사AI, 에퀴닉스와 유럽 AI 인프라 시장 공략 나선다',summary:'퓨리오사AI가 글로벌 데이터센터 기업 에퀴닉스와 협력해 유럽 AI 인프라 시장 공략에 나선다. RNGD 기반 추론 인프라를 유럽 주요 거점에 배치하는 방안을 논의한다.',url:'#'},
+  {date:'07-08',src:'Furiosa AI News',title:"삼성전자, AI 인프라용 기업용 SSD 'PM1763' 양산",summary:'삼성전자가 AI 데이터센터용 고성능 기업용 SSD PM1763 양산을 시작했다. 대용량·고대역폭으로 AI 추론·학습 워크로드를 겨냥한다.',url:'#'},
+  {date:'07-08',src:'Furiosa AI News',title:'ByteDance, 엔비디아 탈피 위해 자체 칩 개발 착수',summary:'바이트댄스가 엔비디아 의존도를 낮추기 위해 자체 AI 칩 개발에 착수했다는 보도. 중국 빅테크의 탈-엔비디아 흐름이 확산되고 있다.',url:'#'},
+  {date:'07-08',src:'Furiosa AI News',title:'퓨리오사AI, 유럽에 RNGD 기반 추론 전용 AI 데이터센터 구축',summary:'퓨리오사AI가 유럽에 RNGD 기반 추론 전용 AI 데이터센터를 구축한다. 전력효율을 앞세워 소버린 AI 수요를 정조준한다.',url:'#'},
+  {date:'07-08',src:'Furiosa AI News',title:'LG AI연구원, 엑사원에 퓨리오사 레니게이드 적용 확대',summary:'LG AI연구원이 엑사원 모델 서빙에 퓨리오사 레니게이드(RNGD) 적용을 확대한다. 국산 NPU-국산 LLM 조합 레퍼런스가 늘고 있다.',url:'#'},
+  {date:'07-06',src:'Furiosa AI News',title:'위지윅스튜디오-퓨리오사AI, 전략적 업무협약 체결',summary:'위지윅스튜디오와 퓨리오사AI가 전략적 업무협약을 체결했다. 콘텐츠·미디어 분야 AI 추론 협력을 추진한다.',url:'#'},
+  {date:'07-04',src:'Furiosa AI News',title:'국민성장펀드, 퓨리오사AI에 8000억 투자 승인',summary:'국민성장펀드가 퓨리오사AI에 8000억원 규모 투자를 승인했다. 국산 AI 반도체 스케일업에 대형 자금이 유입된다.',url:'#'},
+  {date:'07-03',src:'Furiosa AI News',title:'ETRI 호남권연구본부, 퓨리오사·모빌린트와 NPU 지원센터 협력',summary:'ETRI 호남권연구본부가 퓨리오사·모빌린트와 국산 NPU 지원센터 협력에 나선다. 지역 기반 NPU 실증·확산을 지원한다.',url:'#'},
+];
+const gtmContent={
+  'Mid Fit':`<div class="section-label">B2B · 기업 컨택 — Mid Fit</div>`+
+    `<div class="gtm-card"><div class="ttl"><span class="fit-badge mid">MID</span>[MID #1] 플래티어 — 소버린·망분리</div>`+
+    `<div class="kv"><b>모델</b> · Llama (버전 확인 필요) &nbsp;|&nbsp; <b>액션</b> · 파트너십</div>`+
+    `<div class="kv"><b>서비스</b> · 금융사(iM캐피탈) 대상 온프레미스 기반 에이전틱 AI 플랫폼 '엑스젠' 공급 — 고객센터 상담업무 자동화, 여신프로세스 자동화</div>`+
+    `<div class="kv"><b>인프라 규모</b> · 미확인</div>`+
+    `<div class="kv"><b>컨택 명분</b> · 플래티어가 iM캐피탈의 'AI 플랫폼 구축' 사업을 수주하고 자사 에이전틱 AI 플랫폼 '엑스젠'을 공급한다. 금융권은 고객 민감정보를 다루는 핵심 업무에서 외부 SaaS AI 도입이 제한돼, 데이터 유출 리스크를 차단하는 온프레미스 기반 AI 거버넌스 체계를 적용한다. 엑스젠은 퍼블릭 LLM 22종과 딥시크·라마 등 오픈소스를 함께 쓰는 하이브리드 환경을 지원한다.</div>`+
+    `<div class="kv"><b>타이밍</b> · 지난 3월 제주은행 'GenAI 플랫폼' 구축 수주에 이은 금융권 연속 수주.</div>`+
+    `<div class="kv"><b>Win-Win</b></div>`+
+    `<div class="kv win"><b>고객</b> — 온프레 추론 HW로 민감정보 유출 리스크 차단, 라마 등 오픈소스 LLM 서빙 비용 절감. RNGD 180W 공랭으로 기존 금융 전산실을 냉각 공사 없이 수용.</div>`+
+    `<div class="kv win"><b>퓨리오사</b> — 플래티어는 제주은행·iM캐피탈 등 금융 온프레 AX를 반복 수주하는 ISV로, 엑스젠 추론 백엔드에 RNGD 표준 탑재 시 다수 금융 고객사 확산 채널 확보.</div>`+
+    `<div class="kv"><b>매출 기회</b> · 중기(6개월)</div>`+
+    `<div class="kv"><b>컨택 포인트</b> · 진병권 (ECS AX사업부문장) &nbsp;|&nbsp; <b>기존 접점</b> · 신규</div>`+
+    `<div class="kv"><b>출처</b> · <a href="https://www.newsworks.co.kr/news/articleView.html?idxno=845977" target="_blank" rel="noopener">newsworks.co.kr</a></div></div>`,
+  'Low Fit':`<div class="section-label">B2B · 기업 컨택 — Low Fit</div>`+
+    `<div class="gtm-card"><div class="ttl"><span class="fit-badge low">LOW</span>[LOW #1] 코스콤 — 소버린·망분리</div>`+
+    `<div class="kv"><b>모델</b> · EXAONE BI (버전 확인 필요) &nbsp;|&nbsp; <b>액션</b> · 파트너십</div>`+
+    `<div class="kv"><b>서비스</b> · LG AI연구원 '엑사원 BI' 기반 한국 주식시장 예측 AI(AEFS) 공동 구축 — 매일 한·미 약 8000개 종목 분석, 개별 종목 4주 주가 흐름 예측</div>`+
+    `<div class="kv"><b>인프라 규모</b> · 미확인</div>`+
+    `<div class="kv"><b>컨택 명분</b> · 코스콤과 LG AI연구원이 7일 코스콤 본사에서 한국 금융 데이터 분석 서비스 MOU 서명. 핵심은 금융 특화 '엑사원 BI'이며, 데이터 상품 AEFS는 매일 한·미 약 8000개 종목을 분석하고 그중 한국 대표 2500개 종목을 정밀 타깃으로 한다.</div>`+
+    `<div class="kv"><b>타이밍</b> · 7일 MOU 서명 직후, 서비스 고도화·데이터 파이프라인 구축 초기 단계.</div>`+
+    `<div class="kv"><b>Win-Win</b></div>`+
+    `<div class="kv win"><b>고객</b> — 실시간 거래 데이터 특성상 온프레 추론이 유리, RNGD로 외부 반출 없이 대규모 종목 분석 처리량 확보.</div>`+
+    `<div class="kv win"><b>퓨리오사</b> — 코스콤은 자본시장 IT 중추로, 금융 온프레 추론 레퍼런스 확보 시 후속 금융기관 확산 파급력 큼.</div>`+
+    `<div class="kv"><b>매출 기회</b> · 장기(1년+) — 현재 MOU 단계로 추론 인프라 논의는 이르나 선제 접점 확보 가치.</div>`+
+    `<div class="kv"><b>의사결정 라인</b> · 윤창현 (코스콤 사장) &nbsp;|&nbsp; <b>기존 접점</b> · 신규</div>`+
+    `<div class="kv"><b>출처</b> · <a href="http://www.ttlnews.com/news/articleView.html?idxno=3123440" target="_blank" rel="noopener">ttlnews.com</a></div></div>`,
+  'CSP / Infra Partner':`<div class="section-label">CSP / Infra Partner</div>`+
+    `<div class="placeholder" style="margin:0 0 14px;padding:14px 16px;text-align:left">인프라 운영사(CSP/IDC) — RNGD 서버 납품 또는 NPUaaS 파트너십 대상</div>`+
+    `<div class="gtm-card"><div class="ttl">[1] 아이에이</div>`+
+    `<div class="kv"><b>활동</b> · 아이에이와 자회사 아이에이클라우드가 7/1 국산 NPU 기반 소형 AI 데이터센터(AIDC) '네오큐브' 사업 본격 추진. 국산 NPU 서버를 전면 배치하고 인프라·클라우드 풀스택·AI SW·냉각·전력을 국내 기술 중심으로 구성. NIPA 실증과제 수주, 1차 화성·광주 → 2차 확장 및 NPUaaS 공급 본격화, 국내 NPU·서버·SW 기업과 논의 중.</div>`+
+    `<div class="kv"><b>협력 방향</b> · 자체 클라우드 풀스택을 운영하며 국산 NPU 서버 파트너를 물색 중인 신규 AIDC 운영사 — '국내 NPU·서버·SW 기업과 논의 중' 명시, RNGD 서버 직접 공급 + NPUaaS 연계 접점.</div>`+
+    `<div class="kv"><b>기존 접점</b> · 신규</div>`+
+    `<div class="kv"><b>출처</b> · <a href="https://www.etnews.com/20260701000564" target="_blank" rel="noopener">etnews.com</a></div></div>`,
+  '일본 후보':`<div class="section-label">일본 후보</div>`+
+    `<div class="gtm-card"><div class="kv"><b>이번 주 해당 없음</b></div>`+
+    `<div class="kv" style="color:var(--muted)">검토: JP 403건 중 지원모델 키워드 매치 23건(본문 보유 21건) 전량 정독 — GMO인터넷그룹은 Gemma 4 사용(지원모델 아님), 지역기후 특화 LLM은 東京科学大学·국립환경연구소 연구(연구·공공), OpenClaw+Qwen3.5 미니PC는 소비자 제품 리뷰, Naver·Daum·Zum(Solar·K-EXAONE)은 한국 기업. 일본 본사 기업이 지원모델을 본문에 직접 명시해 채택한 사례 0건.</div></div>`,
+  '주목 나라장터 공고':`<div class="section-label">B2G · 주목 나라장터 공고</div>`+
+    `<div class="placeholder">이번 주 주목 공고 없음 (목업 — 실제 나라장터 데이터 연동 예정)</div>`,
+};
+
+/* ===================== 렌더 ===================== */
+function renderGtm(name){const el=document.getElementById('gtm-content'); if(!el)return; el.innerHTML=gtmContent[name]||gtmContent['Mid Fit'];}
+function companyBlock(region,ci,c){
+  const id='co-'+c.name.replace(/[^A-Za-z0-9]/g,'');
+  const news=c.news.length
+    ? c.news.map((it,ni)=>`<div class="news-item" data-region="${region}" data-ci="${ci}" data-ni="${ni}"><span class="news-date">${it.d}</span><span class="news-title">${it.t}</span></div>`).join('')
+    : `<div class="news-item" style="cursor:default"><span class="news-title" style="color:var(--dim)">이번 주 신규 기사 없음</span></div>`;
+  return `<div class="company" id="${id}"><div class="company-header" data-region="${region}" data-ci="${ci}"><span class="company-dot"></span><span class="company-name">${c.name}</span><span class="co-chevron">⊕</span></div>${news}</div>`;
+}
+function renderComp(){
+  const el=document.getElementById('comp-content'); if(!el)return;
+  let h='<div class="section-label">Korea</div>'+COMPANIES.korea.map((c,ci)=>companyBlock('korea',ci,c)).join('');
+  h+='<div class="section-label" style="margin-top:24px">Global</div>'+COMPANIES.global.map((c,ci)=>companyBlock('global',ci,c)).join('');
+  h+='<div class="section-label" style="margin-top:24px">AI 반도체 동향 <span class="sub">· 국내·글로벌 기사 모음</span></div>';
+  h+=`<div class="ai-day-box" id="ai-box"><div class="ai-day-box-header">${AI_NEWS.date}</div>`;
+  h+=AI_NEWS.rows.map((r,i)=>`<a class="ai-news-row" data-ai="${i}">${r.t} <span class="ai-news-src">— ${r.src}</span><span class="ai-news-summary">${r.s}</span></a>`).join('');
+  h+='</div>';
+  el.innerHTML=h;
+}
+
+/* ===================== 모달 ===================== */
+const backdrop=document.getElementById('modal-backdrop');
+document.getElementById('modal-close').addEventListener('click',()=>backdrop.classList.remove('open'));
+backdrop.addEventListener('click',e=>{if(e.target===backdrop)backdrop.classList.remove('open');});
+function openModal(c){
+  document.getElementById('modal-company-name').textContent=c.name;
+  document.getElementById('modal-website').href=c.website;
+  document.getElementById('modal-blog').href=c.blog;
+  backdrop.classList.add('open');
+}
+const articleBackdrop=document.getElementById('article-backdrop');
+document.getElementById('article-modal-close').addEventListener('click',()=>articleBackdrop.classList.remove('open'));
+articleBackdrop.addEventListener('click',e=>{if(e.target===articleBackdrop)articleBackdrop.classList.remove('open');});
+function openArticleModal(item,company){
+  document.getElementById('article-modal-company').textContent=company||'';
+  document.getElementById('article-modal-date').textContent=item.date||'';
+  document.getElementById('article-modal-title').textContent=item.title||'';
+  document.getElementById('article-modal-summary').textContent=item.summary||'(요약 없음)';
+  const lk=document.getElementById('article-modal-link'), real=item.url&&item.url!=='#';
+  lk.href=real?item.url:'#';
+  if(real) lk.setAttribute('target','_blank'); else lk.removeAttribute('target');
+  lk.onclick=real?null:(ev=>ev.preventDefault());
+  articleBackdrop.classList.add('open');
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){backdrop.classList.remove('open');articleBackdrop.classList.remove('open');}});
+
+/* ===================== 배선 ===================== */
+renderGtm('Mid Fit');
+renderComp();
+const compContent=document.getElementById('comp-content');
+if(compContent){
+  compContent.addEventListener('click',e=>{
+    const co=e.target.closest('.company-header');
+    if(co){ openModal(COMPANIES[co.dataset.region][+co.dataset.ci]); return; }
+    const ni=e.target.closest('.news-item');
+    if(ni&&ni.dataset.ni!==undefined){ const c=COMPANIES[ni.dataset.region][+ni.dataset.ci], it=c.news[+ni.dataset.ni]; openArticleModal({date:it.d,title:it.t,summary:it.s,url:it.u},c.name); return; }
+    const ar=e.target.closest('.ai-news-row');
+    if(ar){ const r=AI_NEWS.rows[+ar.dataset.ai]; openArticleModal({date:AI_NEWS.date,title:r.t,summary:r.s,url:r.u},'AI 반도체 동향'); return; }
+  });
+}
+const compAside=document.getElementById('comp-aside');
+if(compAside){
+  compAside.addEventListener('click',e=>{
+    const it=e.target.closest('.sidebar-item'); if(!it)return;
+    const name=it.textContent.trim();
+    const tgt=name.indexOf('AI')===0?document.getElementById('ai-box'):document.getElementById('co-'+name.replace(/[^A-Za-z0-9]/g,''));
+    if(tgt) tgt.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+}
+const furiosaPanel=document.getElementById('panel-furiosa');
+if(furiosaPanel){
+  furiosaPanel.addEventListener('click',e=>{
+    const card=e.target.closest('.hl-card'); if(!card||card.dataset.i===undefined)return;
+    const it=TAB1_NEWS[+card.dataset.i]; if(it) openArticleModal(it,it.src);
   });
 }
 </script>
