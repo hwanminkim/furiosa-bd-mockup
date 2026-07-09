@@ -137,6 +137,9 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 .ai-news-row:last-child{border-bottom:none}
 .ai-news-row:hover{background:var(--hover-bg-soft)}
 .ai-news-src{color:var(--text-label);font-size:0.8rem}
+.ai-more{display:inline-flex;align-items:center;gap:6px;margin-top:2px;font-family:'ABCFavorit',sans-serif;font-size:0.85rem;font-weight:500;color:var(--red);text-decoration:none}
+.ai-more:hover{text-decoration:underline}
+.ai-more-arrow{font-size:0.75rem}
 /* 모달 (회사 링크 / 기사 요약) */
 .modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:center;justify-content:center;padding:20px}
 .modal-backdrop.open{display:flex}
@@ -494,6 +497,7 @@ function renderComp(){
   h+=`<div class="ai-day-box" id="ai-box"><div class="ai-day-box-header">${AI_NEWS.date}</div>`;
   h+=AI_NEWS.rows.map((r,i)=>`<a class="ai-news-row" data-ai="${i}">${r.t} <span class="ai-news-src">— ${r.src}</span><span class="ai-news-summary">${r.s}</span></a>`).join('');
   h+='</div>';
+  h+=`<a class="ai-more" href="https://silicon-arena.furiosa.in/cards" target="_blank" rel="noopener">Silicon Arena에서 AI 반도체 카드 전체 보기 <span class="ai-more-arrow">↗</span></a>`;
   el.innerHTML=h;
 }
 
