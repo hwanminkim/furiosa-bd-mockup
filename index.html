@@ -298,8 +298,11 @@ h1{font-size:1.9rem;font-weight:700;line-height:1.2;margin-bottom:6px}
 function activateTab(name){
   document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x.dataset.tab===name));
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('panel-'+name).classList.add('active');
+  const panel=document.getElementById('panel-'+name);
+  panel.classList.add('active');
   document.body.setAttribute('data-tab', name);
+  // 탭 누르면(현재 탭 포함) 해당 탭 내용을 최상단으로
+  panel.querySelectorAll('.scroll,aside').forEach(el=>{el.scrollTop=0;});
   // URL 해시에 기록 → file://에서도 새로고침하면 그 탭 그대로 유지
   if(history.replaceState) history.replaceState(null,'','#'+name); else location.hash=name;
 }
